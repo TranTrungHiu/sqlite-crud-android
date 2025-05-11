@@ -1,7 +1,3 @@
-Here's a draft for your `README.md` file for the `sqlite-crud-android` repository:
-
----
-
 # SQLite CRUD Android
 
 A simple Android application demonstrating CRUD (Create, Read, Update, Delete) operations using SQLite.
