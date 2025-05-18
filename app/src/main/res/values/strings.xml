@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">SQLite</string>
+    <string name="app_name">Quản Lý Người Dùng</string>
+    <string name="app_title">QUẢN LÝ NGƯỜI DÙNG</string>
+    <string name="user_count">Số lượng người dùng: %1$d</string>
+    
+    <!-- Button Labels -->
+    <string name="add_user">Thêm người dùng</string>
+    <string name="edit_user">Sửa người dùng</string>
+    <string name="delete_user">Xóa người dùng</string>
+    <string name="count_users">Đếm số lượng</string>
+    <string name="delete_all">Xóa toàn bộ</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="update">Cập nhật</string>
+    
+    <!-- Form Labels -->
+    <string name="username">Tên người dùng</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="email">Email</string>
+    
+    <!-- Messages -->
+    <string name="user_added">Đã thêm người dùng thành công</string>
+    <string name="user_updated">Đã cập nhật người dùng thành công</string>
+    <string name="user_deleted">Đã xóa người dùng thành công</string>
+    <string name="all_users_deleted">Đã xóa tất cả người dùng</string>
+    <string name="confirm_delete">Bạn có chắc chắn muốn xóa?</string>
+    <string name="confirm_delete_all">Bạn có chắc chắn muốn xóa tất cả người dùng?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="required_field">Trường này không được để trống</string>
 </resources>

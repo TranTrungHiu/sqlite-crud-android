@@ -24,21 +24,19 @@ public class UsersDatabaseAdapter {
         dbHelper = new DatabaseHelper(context);
     }
 
-    public UsersDatabaseAdapter open() throws SQLException {
+    public void open() throws SQLException {
         if (db == null || !db.isOpen()) {
             db = dbHelper.getWritableDatabase();
         }
-        return this;
     }
 
-    public void close(){
+    public void close() {
         db.close();
     }
 
-    public SQLiteDatabase getDatabaseInstance(){
+    public SQLiteDatabase getDatabaseInstance() {
         return db;
     }
-
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
         public DatabaseHelper(Context context) {
@@ -66,7 +64,7 @@ public class UsersDatabaseAdapter {
         values.put("phone", phone);
         values.put("email", email);
         db.insert(TABLE_NAME, null, values);
-//        db.close();
+        // db.close();
     }
 
     public ArrayList<User> getRows() {
@@ -82,20 +80,20 @@ public class UsersDatabaseAdapter {
             users.add(user);
         }
         cursor.close();
-//        db.close();
+        // db.close();
         return users;
     }
 
     public void deleteEntry(String id) {
         db = dbHelper.getWritableDatabase();
-        db.delete(TABLE_NAME, "id = ?", new String[]{id});
-//        db.close();
+        db.delete(TABLE_NAME, "id = ?", new String[] { id });
+        // db.close();
     }
 
     public void deleteAll() {
         db = dbHelper.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
-//        db.close();
+        // db.close();
     }
 
     public int getCount() {
@@ -104,7 +102,7 @@ public class UsersDatabaseAdapter {
         cursor.moveToFirst();
         int count = cursor.getInt(0);
         cursor.close();
-//        db.close();
+        // db.close();
         return count;
     }
 
@@ -114,7 +112,7 @@ public class UsersDatabaseAdapter {
         values.put("user_name", user.getUsername());
         values.put("phone", user.getPhone());
         values.put("email", user.getEmail());
-        db.update(TABLE_NAME, values, "id = ?", new String[]{String.valueOf(user.getId())});
-//        db.close();
+        db.update(TABLE_NAME, values, "id = ?", new String[] { String.valueOf(user.getId()) });
+        // db.close();
     }
 }

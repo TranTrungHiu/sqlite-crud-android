@@ -2,9 +2,11 @@ package com.example.sqlite;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sqlite.Adapter.CustomListAdapterUpdateRows;
 import com.example.sqlite.Adapter.UsersDatabaseAdapter;
@@ -13,20 +15,28 @@ import com.example.sqlite.models.User;
 import java.util.ArrayList;
 
 public class UpdateRowView extends AppCompatActivity implements CustomListAdapterUpdateRows.OnItemClickListener {
-    private ListView listView;
+    private RecyclerView recyclerView;
     private ArrayList<User> users;
     private CustomListAdapterUpdateRows adapter;
+    private UsersDatabaseAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_row);
 
-        listView = findViewById(R.id.listupdateviewID);
-        UsersDatabaseAdapter dbAdapter = new UsersDatabaseAdapter(this);
+        // Thiết lập toolbar
+        Toolbar toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        recyclerView = findViewById(R.id.listupdateviewID);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        dbAdapter = new UsersDatabaseAdapter(this);
         users = dbAdapter.getRows();
         adapter = new CustomListAdapterUpdateRows(this, users, this);
-        listView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

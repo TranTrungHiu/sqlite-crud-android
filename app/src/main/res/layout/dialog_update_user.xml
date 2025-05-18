@@ -8,40 +8,58 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update User"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:text="Cập nhật thông tin người dùng"
+        android:textAppearance="@style/TextAppearance.App.Headline"
         android:gravity="center"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/editUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Name"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="8dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
+        android:hint="@string/username">
 
-    <EditText
-        android:id="@+id/editUserPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Phone"
-        android:inputType="phone"
-        android:layout_marginBottom="8dp"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editUserName"
+            style="@style/Widget.App.TextInputEditText"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/editUserEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User Email"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
+        android:hint="@string/phone">
 
-    <Button
-        android:id="@+id/btnSaveUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Changes"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editUserPhone"
+            style="@style/Widget.App.TextInputEditText"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.App.TextInputLayout"
+        android:hint="@string/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editUserEmail"
+            style="@style/Widget.App.TextInputEditText"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        style="@style/ButtonBar"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelUpdate"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cancel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveUpdate"
+            style="@style/Widget.App.Button.Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update" />
+    </LinearLayout>
 </LinearLayout>

@@ -4,16 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sqlite.R;
 import com.example.sqlite.models.User;
 
 import java.util.ArrayList;
 
-public class CustomListAdapterDeleteRows extends BaseAdapter {
+public class CustomListAdapterDeleteRows extends RecyclerView.Adapter<CustomListAdapterDeleteRows.ViewHolder> {
     private Context context;
     private ArrayList<User> userList;
     private OnItemClickListener listener;
@@ -28,29 +30,37 @@ public class CustomListAdapterDeleteRows extends BaseAdapter {
         this.listener = listener;
     }
 
+    @NonNull
     @Override
-    public int getCount() { return userList.size(); }
-    @Override
-    public Object getItem(int position) { return userList.get(position); }
-    @Override
-    public long getItemId(int position) { return position; }
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_delete, parent, false);
+        return new ViewHolder(view);
+    }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item_delete, parent, false);
-        }
-        TextView userName = convertView.findViewById(R.id.userName);
-        TextView userPhone = convertView.findViewById(R.id.userPhone);
-        TextView userEmail = convertView.findViewById(R.id.userEmail);
-        Button deleteButton = convertView.findViewById(R.id.deleteButton);
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User user = userList.get(position);
-        userName.setText(user.getUsername());
-        userPhone.setText(user.getPhone());
-        userEmail.setText(user.getEmail());
-        deleteButton.setOnClickListener(v -> listener.onDeleteClick(user));
+        holder.userName.setText(user.getUsername());
+        holder.userPhone.setText(user.getPhone());
+        holder.userEmail.setText(user.getEmail());
+        holder.deleteButton.setOnClickListener(v -> listener.onDeleteClick(user));
+    }
 
-        return convertView;
+    @Override
+    public int getItemCount() {
+        return userList.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView userName, userPhone, userEmail;
+        Button deleteButton;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            userName = itemView.findViewById(R.id.userName);
+            userPhone = itemView.findViewById(R.id.userPhone);
+            userEmail = itemView.findViewById(R.id.userEmail);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+        }
     }
 }

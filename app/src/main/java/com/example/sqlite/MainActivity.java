@@ -27,21 +27,34 @@ public class MainActivity extends AppCompatActivity {
         Button deleteButton = findViewById(R.id.deleteButton);
         Button countButton = findViewById(R.id.countButton);
         Button deleteAllButton = findViewById(R.id.deleteAllButton);
-
         insertButton.setOnClickListener(v -> startActivity(new Intent(this, InsertRowActivity.class)));
         updateButton.setOnClickListener(v -> startActivity(new Intent(this, UpdateRowView.class)));
         deleteButton.setOnClickListener(v -> startActivity(new Intent(this, DeleteRowActivity.class)));
         countButton.setOnClickListener(v -> updateCount());
-        deleteAllButton.setOnClickListener(v -> {
-            dbAdapter.deleteAll();
-            updateCount();
-        });
+        deleteAllButton.setOnClickListener(v -> showDeleteAllConfirmation());
 
         updateCount();
     }
 
     private void updateCount() {
         int count = dbAdapter.getCount();
-        countTextView.setText("Số lượng người dùng: " + count);
+        countTextView.setText(getString(R.string.user_count, count));
+    }
+
+    private void showDeleteAllConfirmation() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle(R.string.delete_all)
+                .setMessage(R.string.confirm_delete_all)
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    dbAdapter.deleteAll();
+                    updateCount();
+                    com.google.android.material.snackbar.Snackbar.make(
+                            findViewById(android.R.id.content),
+                            R.string.all_users_deleted,
+                            com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show();
+                })
+                .setNegativeButton(R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }
